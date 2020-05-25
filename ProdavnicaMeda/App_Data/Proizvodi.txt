@@ -1,0 +1,3 @@
+﻿Medina;Bagrem;Sombor;Kisacka 24;Zuta;Extra;200;5
+Med;Suncokret;Med i Mile;Ustanicka 2;Braon;Bas dobar;300;7
+A;Travar;Jovan;Zoranova 32;Zut;Ocajan;100;20
