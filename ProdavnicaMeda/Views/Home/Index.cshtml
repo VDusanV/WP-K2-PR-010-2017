@@ -7,23 +7,37 @@
 <div class="jumbotron">
    <h1>Kupi med brzo i lako!</h1>
 </div>
-<form action="~/Home/Sortiraj">
-    <table>
-        <tr>
-            <td>Sortiraj:</td>
-            <td>
-                <input list="sort" name="sortiraj" />
-                <datalist id="sort">
-                    <option value="Nazivu"></option>
-                    <option value="Vrsti meda"></option>
-                </datalist>
-            </td>
-            <td>
-                <input type="submit" />
-            </td>
-        </tr>
-    </table>
-</form>
+<div>
+    <form action="~/Home/Sortiraj" class="form-inline">
+        <table>
+            <tr>
+
+                <td>Sortiraj:</td>
+                <td>
+                    <input list="sortt" name="sortiraj" />
+                    <datalist id="sortt">
+                        <option value="Nazivu"></option>
+                        <option value="Vrsti meda"></option>
+                        <option value="Ceni (opadajuca)"></option>
+                        <option value="Ceni (rastuca)"></option>
+                    </datalist>
+                </td>
+
+                <td>
+                    <input list="c" name="cenalist" />
+                    <datalist id="c">
+                        <option value="Skuplji od"></option>
+                        <option value="Jeftiniji od"></option>
+                    </datalist>
+                </td>
+                <td><input type="text" name="cena" /></td>
+                <td>
+                    <input type="submit" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 <table class="table">
     <tr>
         <th>Naziv</th>

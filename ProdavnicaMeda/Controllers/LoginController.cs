@@ -11,8 +11,10 @@ namespace ProdavnicaMeda.Controllers
     {
         // GET: Login
         public ActionResult Index()
-        {
-            return View();
+        {          
+            
+                Dictionary<string, Korisnik> korisnici = Data.UcitajKorisnike();
+                return View(korisnici);      
         }
         public ActionResult Loguj(string korisnicko,string lozinka)
         {
@@ -20,11 +22,20 @@ namespace ProdavnicaMeda.Controllers
             if(korisnici.ContainsKey(korisnicko) && korisnici[korisnicko].Lozinka == lozinka)
             {
                 
-                Session["ulogovan"] = korisnici[korisnicko];
+                Session["korisnik"] = korisnici[korisnicko];
                 return RedirectToAction("Index", "Home");
             }
             else
             {
+                Dictionary<string, Korisnik> admini = (Dictionary<string, Korisnik>)HttpContext.Application["admini"];
+                if(admini.ContainsKey(korisnicko) && admini[korisnicko].Lozinka == lozinka)
+                {
+                    Session["admin"] = admini[korisnicko];
+                    return RedirectToAction("Index", "Home");
+
+                }
+
+
                 ViewBag.Message = "Neuspesno logovanje";
                 return View("Index");
             }

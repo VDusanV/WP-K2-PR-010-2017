@@ -19,6 +19,7 @@ namespace ProdavnicaMeda.Controllers
             Dictionary<string, Korisnik> korisnici = (Dictionary<string, Korisnik>)HttpContext.Application["korisnici"];
 
             korisnici.Add(k.KorisnickoIme,k);
+            Data.UpisiKorisnika(k);
             return RedirectToAction("Index", "login");
         }
     }

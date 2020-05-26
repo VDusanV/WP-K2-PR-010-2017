@@ -1,10 +1,11 @@
-﻿
+﻿@using ProdavnicaMeda.Models
+@model Dictionary<string,Korisnik>
 @{
     ViewBag.Title = "Index";
 }
 
 <div>
-    <h2>@ViewBag.Message</h2> 
+    <h2>@ViewBag.Message</h2>
 </div>
 <h2>Login</h2>
 <form class="container" action="~/Login/Loguj" method="post">
@@ -22,3 +23,25 @@
         </tr>
     </table>
 </form>
+@if (Session["admin"] != null)
+{
+    <div class="container">
+        <table>
+            <tr>
+                <th>Korisnicko</th>
+                <th>Lozinka</th>
+                <th>Ime</th>
+            </tr>
+
+
+            @foreach (Korisnik i in Model.Values)
+            {
+                <tr>
+                    <td>@i.KorisnickoIme</td>
+                    <td>@i.Lozinka</td>
+                    <td>@i.Ime</td>
+                </tr>
+            }
+        </table>
+    </div>
+}

@@ -31,9 +31,62 @@ namespace ProdavnicaMeda.Controllers
         public ActionResult Sortiraj()
         {
             List<Proizvod> p = (List<Proizvod>)HttpContext.Application["proizvodi"];
-            //DORADITI PO CEMU SE SORTIRA
-            List<Proizvod> sorted = p.OrderBy(l => l.Naziv).ToList();
-            return View("Index",sorted);
+            
+                List<Proizvod> sorted = new List<Proizvod>() { };
+                double s=0;
+                if (Request["sortiraj"] == "Nazivu")
+                {
+                    sorted = p.OrderBy(l => l.Naziv).ToList();
+                }
+                else if (Request["sortiraj"] == "Vrsti meda")
+                {
+                    sorted = p.OrderBy(l => l.VrstaMeda).ToList();
+                }
+                else if(Request["sortiraj"] == "Ceni (opadajuca)")
+                {
+                    sorted = p.OrderBy(l => l.Cena).ToList();
+                }
+                else if (Request["cenalist"] != null && Request["cena"]!= null)
+                {
+                    try
+                    {
+                        s = double.Parse(Request["cena"]);
+                    }
+                    catch (Exception)
+                    {
+
+                       
+                    }
+                    if(Request["cenalist"]=="Skuplji od")
+                    {
+                        foreach (var item in p)
+                        {
+                            if (s <= item.Cena)
+                            {
+                                sorted.Add(item);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in p)
+                        {
+                            if (s >= item.Cena)
+                            {
+                                sorted.Add(item);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                        sorted = p.OrderBy(l => l.Cena).ToList();
+                        sorted.Reverse();
+
+                }
+                return View("Index",sorted);
+            
+          
 
         }
     }
